@@ -47,19 +47,25 @@ app.post("/api/v1/website",async(req,res)=>{
 
 app.get("/api/v1/userwebsites",async(req,res)=>{
            //here we want userId from token
-    const tokenUserId=req.cookies.uidcookie;
+    const tokenUserId=req.cookies.userId;
     if(!tokenUserId){
         res.json({
             message:"unauths"
         })
         return;
     }  
-     await client.website.findMany({
+   const websites=await client.website.findMany({
         where:{
          userId:tokenUserId,
          disabled:false
+        },
+        include:{
+            websiteTick:true
+          }
+     })
 
-        }
+     res.json({
+      websites
      })
 
 })
@@ -167,7 +173,10 @@ if(CheckedByEmail){
 
 // console.log("token is : ",token);
 
- 
+ res.cookie("userId",PutUserIntoDB.id,{
+    httpOnly:true,
+    secure:false
+ })
 res.cookie("uidcookie",token,{
     httpOnly:true,
     secure:false
@@ -232,6 +241,11 @@ app.post("/api/v1/user/signin",async(req,res)=>{
         httpOnly:false,
         secure:false
     })
+
+    res.cookie("userId",CheckedByEmail.id,{
+        httpOnly:true,
+        secure:false
+     })
     res.json({
         message:"found",
         data:CheckedByEmail
