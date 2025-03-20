@@ -1,9 +1,28 @@
 import { Link, useNavigate } from "react-router-dom"
 import Squares from "../components/Squares"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 export const Home=()=>{
-
     const navigate=useNavigate();
+    const [auths,setauths]=useState(false);
+
+    const handlelogout=async()=>{
+       const resp=await axios.post("http://localhost:3000/api/v1/user/logout",{},{withCredentials:true});
+         if(resp.data.message==="logout"){
+            navigate("/signin");
+         }
+    }
+
+    useEffect(()=>{
+        axios.get("http://localhost:3000/api/v1/auths",{withCredentials:true}).then((resp)=>{
+            if(resp.data.message==="authenticated"){
+                setauths(true)
+            } 
+        }) 
+    },[])
+
+    
     return  <div className="h-screen w-full bg-black relative">
     {/* Background Animation */}
     <div className="absolute h-screen w-full z-[3]">
@@ -20,9 +39,10 @@ export const Home=()=>{
     <div className="relative text-white flex flex-col h-full pb-32">
       <div className="z-10 relative justify-end border-b-1 border-[#A1A1AA] list-none gap-8 items-center h-20 w-full flex">
       <div className="mr-64 z-10 flex gap-8 uppercase font-medium">
-      <li><Link to="/"/>Home</li>
-      <li onClick={()=> navigate("/signup")} className="font-semibold cursor-pointer"><Link to="/signup"/>SIGNUP</li>
-      <li> <Link to="/explore"/>EXPLORE</li>
+      <li className="cursor-pointer"><Link to="/"/>Home</li>
+     { auths? <li  onClick={handlelogout} className="font-semibold cursor-pointer">LOGOUT</li>
+      : <li onClick={()=> navigate("/signup")} className="font-semibold cursor-pointer"><Link to="/signup"/>SIGNUP</li>}
+      <li onClick={()=> navigate("/explore")} className="cursor-pointer"> <Link to="/explore"/>EXPLORE</li>
        
       </div>
       </div>

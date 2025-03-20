@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-spring/web": "^9.7.5",
     "@tailwindcss/vite": "^4.0.14",
+    "axios": "^1.8.4",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
