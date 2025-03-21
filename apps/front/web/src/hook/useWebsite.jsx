@@ -21,5 +21,5 @@ export const useWebsites=()=>{
        return ()=> clearInterval(interval);
     },[])
     
-    return websites;
+    return {websites,refreshWebsites};
 }

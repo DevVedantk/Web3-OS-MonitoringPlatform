@@ -11,7 +11,7 @@ export const Navbar=()=>{
              </div>
             <div className="mr-16 gap-2 flex">
             <button onClick={()=>navigate("/")} className="h-10 cursor-pointer rounded w-32 font-bold text-white bg-[#6366F1]">Go Back</button>
-            <button className="h-10 cursor-pointer rounded w-32 font-bold text-white bg-[#6366F1]">Add Website</button>
+            <button  onClick={()=>navigate("/upload")} className="h-10 cursor-pointer rounded w-32 font-bold text-white bg-[#6366F1]">Add Website</button>
             </div>
         
     </div>

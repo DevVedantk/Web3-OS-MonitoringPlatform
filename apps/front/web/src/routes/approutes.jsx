@@ -3,6 +3,7 @@ import { Home } from "../screen/home"
 import { Explore } from "../screen/explore"
 import { SignIn } from "../screen/signin"
 import { SignUp } from "../screen/signup"
+import { InputBox } from "../components/inputbox"
 
 export const AppRoutes=()=>{
 
@@ -14,6 +15,7 @@ export const AppRoutes=()=>{
      <Route path="/explore" element={<Explore/>}/>
      <Route path="/signin" element={<SignIn/>}/>
      <Route path="/signup" element={<SignUp/>}/>
+     <Route path="/upload" element={<InputBox/>}/>
      <Route/>
     </Routes>
     </div>

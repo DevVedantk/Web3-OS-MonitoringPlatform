@@ -5,7 +5,9 @@ import { Card } from "../components/processCard";
 
 export const Explore=()=>{
 
-    const website=useWebsites();
+    const {website,refreshWebsites}=useWebsites();
+
+    console.log("sites are :",website);
 
     return <div className="h-screen w-full bg-[#111827]">
              <Navbar/>

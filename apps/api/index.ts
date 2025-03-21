@@ -21,6 +21,8 @@ app.use(express.json());
 //add your site
 app.post("/api/v1/website",async(req,res)=>{
     //here we want userId from token
+
+    console.log("here aay gya");
     const tokenUserId=req.cookies.uidcookie;
     if(!tokenUserId){
         res.json({
@@ -31,6 +33,7 @@ app.post("/api/v1/website",async(req,res)=>{
 
    
     const {WebsiteUrl}=req.body;
+    console.log(WebsiteUrl);
       
    const resp=await client.website.create({
         data:{
