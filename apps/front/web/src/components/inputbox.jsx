@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Globe, Plus } from 'lucide-react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useWebsites } from "../hook/useWebsite";
 
 export const InputBox=()=>{
+  const [website,refreshWebsites]=useWebsites();
 
          const [url, setUrl] = useState("");
          const navigate=useNavigate();
@@ -15,15 +17,16 @@ const handleSubmit = async(e) => {
     
  const resp= await axios.post("http://localhost:3000/api/v1/website",{
         WebsiteUrl:url
-    },{withCredentials:true})
-    if(resp.data.message==="unauths"){
-     alert("You're Not loggedIn");
-     return;
-    } else{
-        navigate("/explore")
-        console.log("website id",resp);
-    }
-
+    },{withCredentials:true}).then((resp)=>{
+      refreshWebsites();
+      if(resp.data.message==="unauths"){
+        alert("You're Not loggedIn");
+        return;
+       } else{
+           navigate("/explore")
+           console.log("website id",resp);
+       }
+    })
     setUrl("");
   };
     return <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">

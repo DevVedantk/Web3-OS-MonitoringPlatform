@@ -23,7 +23,7 @@ app.post("/api/v1/website",async(req,res)=>{
     //here we want userId from token
 
     console.log("here aay gya");
-    const tokenUserId=req.cookies.uidcookie;
+    const tokenUserId=req.cookies.userId;
     if(!tokenUserId){
         res.json({
             message:"unauths"
@@ -41,6 +41,8 @@ app.post("/api/v1/website",async(req,res)=>{
         userId:tokenUserId
         }
      })
+
+     console.log(resp)
 
      res.json({
         websiteId:resp.id
@@ -76,7 +78,7 @@ app.get("/api/v1/userwebsites",async(req,res)=>{
 
 
 app.get("/api/v1/website/status",async(req,res)=>{
-    const tokenUserId=req.cookies.uidcookie;
+    const tokenUserId=req.cookies.userId;
     if(!tokenUserId){
         res.json({
             message:"unauths"
@@ -103,7 +105,7 @@ app.get("/api/v1/website/status",async(req,res)=>{
 
 app.delete("/api/v1/website/delete",async(req,res)=>{
            
-    const tokenUserId=req.cookies.uidcookie;
+    const tokenUserId=req.cookies.userId;
     if(!tokenUserId){
         res.json({
             message:"unauths"

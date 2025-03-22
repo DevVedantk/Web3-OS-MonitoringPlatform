@@ -24,7 +24,7 @@ model website{
 
 model Validator{
   id String @id @unique @default(uuid())
-  publicKey String
+  publicKey String   //solana public key
   ipAddress String
   Location String
    websiteTick WebSiteTick[]

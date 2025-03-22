@@ -9,6 +9,7 @@ export const useWebsites=()=>{
    async function refreshWebsites(){
       const resp=await axios.get("http://localhost:3000/api/v1/userwebsites",{withCredentials:true});
       setwebsites(resp.data.websites);
+      console.log("website from db",resp.data);
     }
 
     useEffect(()=>{
@@ -21,5 +22,5 @@ export const useWebsites=()=>{
        return ()=> clearInterval(interval);
     },[])
     
-    return {websites,refreshWebsites};
+    return [websites,refreshWebsites];
 }
