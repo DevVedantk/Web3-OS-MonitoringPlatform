@@ -4,6 +4,7 @@ import { Explore } from "../screen/explore"
 import { SignIn } from "../screen/signin"
 import { SignUp } from "../screen/signup"
 import { InputBox } from "../components/inputbox"
+import { VM } from "../screen/vm"
 
 export const AppRoutes=()=>{
 
@@ -16,6 +17,7 @@ export const AppRoutes=()=>{
      <Route path="/signin" element={<SignIn/>}/>
      <Route path="/signup" element={<SignUp/>}/>
      <Route path="/upload" element={<InputBox/>}/>
+     <Route path="/vm" element={<VM/>}/>
      <Route/>
     </Routes>
     </div>

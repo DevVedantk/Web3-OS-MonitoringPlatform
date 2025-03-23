@@ -43,6 +43,7 @@ export const Home=()=>{
      { auths? <li  onClick={handlelogout} className="font-semibold cursor-pointer">LOGOUT</li>
       : <li onClick={()=> navigate("/signup")} className="font-semibold cursor-pointer"><Link to="/signup"/>SIGNUP</li>}
       <li onClick={()=> navigate("/explore")} className="cursor-pointer"> <Link to="/explore"/>EXPLORE</li>
+      <li onClick={()=> navigate("/vm")} className="cursor-pointer"> <Link to="/vm"/>VMs</li>
        
       </div>
       </div>
